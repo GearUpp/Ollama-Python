@@ -18,7 +18,7 @@ for image in images:
 def analysingfood(image):
     print(f"Analysing Image: {image}")
     response = ollama.chat(
-    model="gemma3:12b", #gemma3:12b or llava:7b
+    model="gemma3:4b", #gemma3:12b or llava:7b   gemma3:4b on main desktop
         messages = [{
             "role": "user",
             "Content": "Find food, itemize all ingredients visible and output as JSON",
