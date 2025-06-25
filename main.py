@@ -5,7 +5,7 @@ import pandas as pd
 
 images = [file for file in os.listdir("./images") if file.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
-print(f" List of availible images to analyse: {images}")
+
 
 #printing list of images to analyse with index values
 print("Index  | Image name                   |")
@@ -18,10 +18,10 @@ for image in images:
 def analysingfood(image):
     print(f"Analysing Image: {image}")
     response = ollama.chat(
-    model="llava:7b",
+    model="gemma3:12b", #gemma3:12b or llava:7b
         messages = [{
             "role": "user",
-            "Content": "Find a meal and described what it contains only, not other descriptions required ",
+            "Content": "Find food, itemize all ingredients visible and output as JSON",
         "images": [f"./images/{image}"]
         }])
     meal_description = response["message"]["content"]
@@ -37,6 +37,7 @@ def analysingfood(image):
 
 while True:
     try:
+        print()
         selection = int(input("Select the image to analyse:"))
         if selection & 1 < selection < (len(images) + 1):
             analysingfood(images[selection - 1])
