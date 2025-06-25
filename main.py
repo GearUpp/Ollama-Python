@@ -13,6 +13,7 @@ for image in images:
         "images": [f"./images/{image}"]
         }])
 
+
     meal_description = response["message"]["content"]
     print(f"Meal Description: ", meal_description)
     res_calories = ollama.chat(
